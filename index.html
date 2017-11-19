@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<link rel="stylesheet" href="style.css" type="text/css"/>
+
+</head>
+<body>
+	
+
+<video controls id="audiofile" width="500" height="100">
+	
+	<source src="01-Peppa-and-her-family-are-at-the-swimming-pool.wav" type="audio/wav">
+	<track kind="captions" src="transcript.vtt" label="English" srclang="en">
+
+</video>
+
+<pre id="track">
+	
+</pre>
+
+	<script src="script.js" type="text/javascript"></script>
+
+
+<code>var audioFile = document.getElementById('audiofile');
+audiofile.textTracks[0].mode = "showing";
+
+var trackElement = document.getElementById('track');
+
+audioFile.addEventListener('timeupdate', showTime, false);
+
+function showTime(e) {
+	
+	var text = e.target.textTracks[0].activeCues[0].text
+	trackElement.textContent = text;
+}
+
+function getTrack() {
+	var audio = document.getElementById('audiofile');
+	return audio.textTracks[0];
+}
+
+function joinCues() {
+	var cues = getTrack().cues;
+	var sentence = [];
+
+	console.log(cues);
+	console.log(Object.entries(cues));
+}
+
+joinCues();</code>
+
+</body>
+</html>
